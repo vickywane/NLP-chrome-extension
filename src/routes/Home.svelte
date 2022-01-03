@@ -18,7 +18,7 @@
           class="custom-btn"
           on:click={() => handleAppView({ view: "VOICESCREEN" })}
         >
-          Generate Search Query From Voice Input
+          Generate Search Query From Voice
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5 ml-2"
@@ -43,7 +43,7 @@
           class="custom-btn"
           on:click={() => handleAppView({ view: "TEXTSCREEN" })}
         >
-          Generate Search Query From Text Input
+          Generate Search Query From Text
 
           <svg
             xmlns="http://www.w3.org/2000/svg"

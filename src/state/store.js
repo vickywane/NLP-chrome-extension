@@ -7,7 +7,8 @@ const recorderBits = []
 export const appState = writable({
     recorderInstance: null,
     searchQueryResult: null,
-    textToSpeech: null
+    textToSpeech: null,
+    mediaStream: null
 })
 
 export const recorderStatus = writable({ status: "STOPPED", hasError: false })
@@ -26,8 +27,8 @@ export const startRecorder = async () => {
         const mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true })
 
         appState.update(state => {
-            const recorderInstance = new MediaRecorder(mediaStream)
-            state.recorderInstance = recorderInstance
+            state.mediaStream = mediaStream
+            state.recorderInstance = new MediaRecorder(mediaStream)
 
             state.recorderInstance.start()
             state.recorderInstance.ondataavailable = (event) => {
@@ -52,7 +53,6 @@ const submitRecording = async (formData) => {
             body: formData
         })
 
-        // const { data } = await req.json()
         const { data } = await req.json()
         const { queryResult, webhookStatus } = data
         /**
@@ -62,15 +62,16 @@ const submitRecording = async (formData) => {
             appState.update((state) => {
                 state.textToSpeech = queryResult.queryText
                 state.searchQueryResult = queryResult.fulfillmentMessages[0].text.text[0]
+                state.mediaStream = null;
+                state.recorderInstance = null;
 
                 return state
             })
 
-           return updateRecorderStatus({ status: "STOPPED", hasError: false })
-        }  
+            return updateRecorderStatus({ status: "STOPPED", hasError: false })
+        }
 
         updateRecorderStatus({ status: "STOPPED", hasError: true })
-        console.log(webhookStatus.message)
     } catch (e) {
         console.log("Error sending recording:", e);
 
@@ -83,6 +84,8 @@ export const stopRecorder = async () => {
         const formData = new FormData();
 
         appState.update(state => {
+            state.mediaStream.getTracks().forEach(track => track.enabled && track.stop())
+
             state.recorderInstance.stop()
 
             state.recorderInstance.onstop = async () => {
@@ -99,6 +102,7 @@ export const stopRecorder = async () => {
                     submitRecording(formData)
                 }
             };
+
             return state
         })
     } catch (e) {

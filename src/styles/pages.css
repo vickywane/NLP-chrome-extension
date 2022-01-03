@@ -17,6 +17,7 @@
     padding: 0.5rem 1rem;
     border-radius: 5px;
     font-size: .9rem;
+    display: flex;
   }
 
   .custom-input {
@@ -26,4 +27,8 @@
     height: 40px;
     padding: .2rem 1rem;
     border-radius: 5px;
+  }
+
+  code {
+    font-size: .85rem;
   }
