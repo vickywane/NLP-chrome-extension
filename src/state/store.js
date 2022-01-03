@@ -1,12 +1,13 @@
 import { writable } from 'svelte/store'
 import { AGENT_URL } from '../utils/helpers'
+import axios from 'axios'
 
 const recorderBits = []
 
 export const appState = writable({
-    recorderStatus: 'STOPPED',
     recorderInstance: null,
-    searchQueryResult: null
+    searchQueryResult: null,
+    textToSpeech: null
 })
 
 export const recorderStatus = writable({ status: "STOPPED", hasError: false })
@@ -42,6 +43,41 @@ export const startRecorder = async () => {
     }
 };
 
+const submitRecording = async (formData) => {
+    updateRecorderStatus({ status: "GENERATING_SEARCH_QUERY" })
+
+    try {
+        const req = await fetch(`http://localhost:4040/api/agent/voice-input`, {
+            method: "POST",
+            body: formData
+        })
+
+        // const { data } = await req.json()
+        const { data } = await req.json()
+        const { queryResult, webhookStatus } = data
+        /**
+         * Dialogflow return status codes. Non-0 inidicates execution failure
+         */
+        if (webhookStatus.code === 0) {
+            appState.update((state) => {
+                state.textToSpeech = queryResult.queryText
+                state.searchQueryResult = queryResult.fulfillmentMessages[0].text.text[0]
+
+                return state
+            })
+
+           return updateRecorderStatus({ status: "STOPPED", hasError: false })
+        }  
+
+        updateRecorderStatus({ status: "STOPPED", hasError: true })
+        console.log(webhookStatus.message)
+    } catch (e) {
+        console.log("Error sending recording:", e);
+
+        updateRecorderStatus({ status: "STOPPED", hasError: true })
+    }
+}
+
 export const stopRecorder = async () => {
     try {
         const formData = new FormData();
@@ -60,34 +96,13 @@ export const stopRecorder = async () => {
                     });
 
                     formData.append("voiceInput", inputFile);
+                    submitRecording(formData)
                 }
             };
-
             return state
         })
-
-        updateRecorderStatus({ status: "GENERATING_SEARCH_QUERY" })
-
-        appState.update(async (state) => {
-            try {
-                const req = await fetch(`${AGENT_URL}/voice-input`, {
-                    method: "POST",
-                    body: formData
-                })
-
-                const response = await req.json()
-                state.searchQueryResult = { result: response }
-                updateRecorderStatus({ status: "STOPPED", hasError: false })
-
-                return state
-            } catch (e) {
-                console.log("Error sending recording:", e);
-
-                updateRecorderStatus({ status: "STOPPED", hasError: true })
-            }
-        })
-
     } catch (e) {
         console.log("STOP RECORD ERROR", e)
     }
 };
+

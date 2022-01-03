@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 
-export const appView = writable("TEXTSCREEN")
+export const appView = writable("HOMESCREEN")
 
 export const handleAppView = ({ view }) => {
     if (view) {

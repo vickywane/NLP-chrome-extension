@@ -14,21 +14,21 @@
   let recorderState;
 
   appState.subscribe((value) => {
-    state = value;
+    state = value
   });
 
   recorderStatus.subscribe((status) => (recorderState = status));
 </script>
 
 <Wrapper>
-  <section class="my-5" >
+  <section class="my-5">
     <p class="text-center">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, illum!
     </p>
   </section>
 
   <section>
-    <GeneratedQuery />
+    <GeneratedQuery query={state.searchQueryResult} />
   </section>
 
   <section>
@@ -98,7 +98,7 @@
         </div>
       {/if}
 
-      {#if recorderState.hasError === "ERROR_GENERATING"}
+      {#if recorderState.hasError}
         <p class="error-text">Error Generating Code Search Query</p>
       {/if}
     </div>
