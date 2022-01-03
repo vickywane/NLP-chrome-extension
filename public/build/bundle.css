@@ -1,0 +1,110 @@
+.custom-btn.svelte-5rwdiu{height:50px;border:1px solid #000;padding:0.5rem 1rem}.custom-btn {
+    height: 45px;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: #383e46;
+    color: #fff;
+    padding: 0 2rem;
+    border: 1px solid #383e46;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    align-items: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}nav.svelte-1esfm6a{height:50px;background:red}p.svelte-1esfm6a{color:red}.custom-btn.svelte-ezcx{height:40px;border:1px solid #000;padding:0.5rem 1rem;border-radius:5px;font-size:1rem}nav {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #CFCFCF;
+    padding: 0 .6rem;
+}
+
+.title {
+    font-size: 1rem;
+}
+
+footer {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #CFCFCF;
+    margin-top: 1rem;
+}
+
+.hover-btn:hover {
+    cursor: pointer;
+}
+
+.search-query-ctn {
+    height: 7rem;
+    width: 90%;
+    background: #E5E5E5;
+}
+
+.info-text {
+    font-size: .85rem;
+    color: gray;
+}
+
+.align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}.custom-btn.svelte-1ovnwmu{height:50px;border:1px solid #000;padding:0.5rem 1rem}a.svelte-tkew{color:blue}a.svelte-tkew:hover{text-decoration:underline;cursor:pointer}.align-center { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-text {
+    text-align: center;
+    color: red;
+    font-size: .85rem;
+}.query-btn.svelte-3myy4f{font-size:0.85rem;padding:0.5rem 1rem;background-color:#cfcfcf}.align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-text {
+    text-align: center;
+    color: red;
+    font-size: .85rem;
+}
+
+.custom-btn {
+    height: 40px;
+    border: 1px solid #000;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: .9rem;
+  }
+
+  .custom-input {
+    border: 1px solid #CFCFCF;
+    font-size: .9rem;
+    width: 90%;
+    height: 40px;
+    padding: .2rem 1rem;
+    border-radius: 5px;
+  }.container.svelte-1pl4p1n{display:flex;justify-content:space-between;flex-direction:column;height:500px}

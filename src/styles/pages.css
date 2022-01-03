@@ -1,0 +1,28 @@
+.align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-text {
+    text-align: center;
+    color: red;
+    font-size: .85rem;
+}
+
+.custom-btn {
+    height: 40px;
+    border: 1px solid #000;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: .9rem;
+  }
+
+  .custom-input {
+    border: 1px solid #CFCFCF;
+    font-size: .9rem;
+    width: 90%;
+    height: 40px;
+    padding: .2rem 1rem;
+    border-radius: 5px;
+  }

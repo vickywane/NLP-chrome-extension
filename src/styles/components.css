@@ -1,0 +1,42 @@
+nav {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #CFCFCF;
+    padding: 0 .6rem;
+}
+
+.title {
+    font-size: 1rem;
+}
+
+footer {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #CFCFCF;
+    margin-top: 1rem;
+}
+
+.hover-btn:hover {
+    cursor: pointer;
+}
+
+.search-query-ctn {
+    height: 7rem;
+    width: 90%;
+    background: #E5E5E5;
+}
+
+.info-text {
+    font-size: .85rem;
+    color: gray;
+}
+
+.align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
